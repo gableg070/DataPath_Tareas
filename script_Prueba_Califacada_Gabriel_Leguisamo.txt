@@ -1,0 +1,49 @@
+#!/bin/bash
+
+#Declaracion de Variables
+
+HOY=$(date +"%Y%m%d")
+consolidado=ventas_consolidadas_$HOY.txt
+HOY_F=$(date +"%Y-%m-%d")
+
+
+#Crear Directorios y Productos
+
+mkdir Tienda1 Tienda2 Tienda3
+
+echo "ProductoA: 10 Unidades" > /home/gabrielleguisamo/ventas/Tienda1/ventas_dia.txt
+echo "ProductoB: 5 Unidades" >> /home/gabrielleguisamo/ventas/Tienda1/ventas_dia.txt
+echo "ProductoC: 15 Unidades" >> /home/gabrielleguisamo/ventas/Tienda1/ventas_dia.txt
+echo "ProductoD: 20 Unidades" >> /home/gabrielleguisamo/ventas/Tienda1/ventas_dia.txt
+
+echo "ProductoA: 8 Unidades" > /home/gabrielleguisamo/ventas/Tienda2/ventas_dia.txt
+echo "ProductoE: 10 Unidades" >> /home/gabrielleguisamo/ventas/Tienda2/ventas_dia.txt
+echo "ProductoF: 25 Unidades" >> /home/gabrielleguisamo/ventas/Tienda2/ventas_dia.txt
+echo "ProductoB: 10 Unidades" >> /home/gabrielleguisamo/ventas/Tienda2/ventas_dia.txt
+
+echo "ProductoG: 5 Unidades" > /home/gabrielleguisamo/ventas/Tienda3/ventas_dia.txt
+echo "ProductoH: 10 Unidades" >> /home/gabrielleguisamo/ventas/Tienda3/ventas_dia.txt
+echo "ProductoA: 7 Unidades" >> /home/gabrielleguisamo/ventas/Tienda3/ventas_dia.txt
+echo "ProductoD: 15 Unidades" >> /home/gabrielleguisamo/ventas/Tienda3/ventas_dia.txt
+
+#Concatenar Archivos y ordenar su contenido
+
+cat Tienda1/ventas_dia.txt Tienda2/ventas_dia.txt Tienda3/ventas_dia.txt >> $consolidado
+
+sort $consolidado -o $consolidado
+
+# Colocar el primero enunciado del archivo consolidado
+
+sed -i "1i Informe de ventas del día $HOY_F" $consolidado
+
+#Brindar permiso de lectura a usuarios que no sean el propietario
+
+chmod 644 $consolidado
+
+#Crear y guardar archivo de ventas consolidadas de Producto A
+grep "ProductoA" $consolidado > ventas_consolidadas_productoa.txt 
+
+#Mover archivos Resultados
+mkdir Resultados
+mv $consolidado Resultados/
+mv ventas_consolidadas_productoa.txt Resultados/
