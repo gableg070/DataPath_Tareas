@@ -40,7 +40,6 @@ BEGIN
     WHERE City = @ciudad_max_ventas;
     
    
-
     -- 5. Crear una vista con las 5 transacciones con los totales más altos en esa ciudad
       CREATE or REPLACE VIEW Top5Transacciones AS
 			SELECT v.`Invoice ID` , v.City , v.ProductLine, v.Payment , v.Rating , v.Total 
@@ -57,7 +56,7 @@ BEGIN
 			LIMIT 5;
 	
     
-    -- Generar la tabla final con las métricas solicitadas
+    -- Generar la tabla de Métricas
     CREATE TEMPORARY TABLE Metricas (
         ciudad VARCHAR(50),
         producto_mas_vendido VARCHAR(50),
@@ -68,13 +67,10 @@ BEGIN
     INSERT INTO Metricas (ciudad, producto_mas_vendido, metodo_pago_mas_comun, promedio_calificacion)
     VALUES (@ciudad_max_ventas, @producto_mas_vendido, @pago_frecuente, @promedio_calificacion);
     
-    -- Muestra la tabla con las métricas solicitadas
     SELECT * FROM Metricas;
-    
-    -- Muestra los resultados de la vista en los resultados del procedimiento
+
     SELECT * FROM Top5Transacciones;
     
-    -- Limpia las tablas temporales
     DROP View Top5Transacciones;
     
 END;
