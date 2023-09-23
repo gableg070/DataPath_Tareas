@@ -75,7 +75,7 @@ BEGIN
     
 END;
 
-
+-- Crear Evento para ejecutar el Procedimiento Almacenado para todos los días a la 1:00 PM
 CREATE EVENT GenerarMetricasEvento
 ON SCHEDULE EVERY 1 DAY
 STARTS TIMESTAMP(CURRENT_DATE, '13:00:00')
