@@ -1,4 +1,5 @@
 
+-- Creación de Procedimiento Almacenado
 
 CREATE PROCEDURE GenerarMetricas()
 BEGIN
