@@ -57,7 +57,7 @@ limit 1
 ), 
 
 obtener_criterios as (
-	select rc.ranking_system_id, rc.id ID , rc.criteria_name Name from ranking_criteria rc
+    select rc.ranking_system_id, rc.id ID , rc.criteria_name Name from ranking_criteria rc
     where rc.ranking_system_id = ( select ID from sistema_mayores_criterios)
 ),
 
