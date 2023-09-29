@@ -1,8 +1,6 @@
 
 use db_universities;
 
-SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
-
 # Primer enunciado 
 
 SELECT u.university_name , (uy.pct_international_students) as Porcentaje_internacional, uy.num_students, uy.year
