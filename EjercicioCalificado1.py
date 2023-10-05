@@ -8,13 +8,14 @@ Original file is located at
 """
 
 #Ejercicio Calificado #1:
-# Pedir al usuario una frase y una letra
+# Obtener Input del Usuario
 frase = input("Por favor, introduce una frase: ")
 letra = input("Ahora, introduce una letra: ")
 
-# Contar el número de veces que aparece la letra en la frase
 fraseMin = frase.lower()
 letraMin = letra.lower()
+
+# Contar el número de veces que aparece la letra en la frase
 listaFrase = list(fraseMin)
 contador = 0
 for caracter in listaFrase:
@@ -23,115 +24,3 @@ for caracter in listaFrase:
 
 # Mostrar el resultado
 print(f"La letra '{letra}' aparece {contador} veces en la frase: '{frase}'")
-
-#Ejercicio #2:
-
-def BuscarLista(num, lista):
-  valor = "No encontrado"
-  indice = -1
-  for count, x in enumerate(lista):
-    if x == num:
-       valor = "Encontrado"
-       indice = count
-       break;
-
-  if indice == -1:
-    print(f"El número introducido no fue Encontrado en la lista")
-  else :
-    print(f"El número fue Encontrado en la lista")
-
-  return indice;
-
-def ValidarEntero(tipo):
-   while True:
-       if (tipo == "lista"):
-          entrada = input("Escribe un numero entero para la lista: ")
-       elif (tipo == "tamanio"):
-          entrada = input("Ingrese el tamaño de la lista: ")
-       else:
-          entrada = input("Ingrese el valor númerico a buscar: ")
-       try:
-           entrada = int(entrada)
-           return entrada
-       except ValueError:
-           print ("La entrada es incorrecta: escriba un numero entero.");
-
-lista = []
-
-tamanio = int(ValidarEntero("tamanio"))
-
-for i in range(0, tamanio):
-  elemento = int(ValidarEntero("lista"))
-  lista.append(elemento)
-
-num = int(ValidarEntero("num"))
-
-indice =  BuscarLista(num, lista)
-
-if(indice != -1):
-  print (f"El número introducido: '{num}' se encuentra en la posición: '{indice+1}' de la lista.");
-
-#Ejercicio #3
-
-def ordenarLista(lista):
-  for i in range(0, len(lista)):
-    for j in range(i+1, len(lista)):
-      if lista[i] >= lista[j]:
-        temp = lista[i]
-        lista[i] = lista[j]
-        lista[j] = temp
-  print("Lista Ordenada: ", lista)
-  return;
-
-def ValidarEntero(tipo):
-   while True:
-       if (tipo == "lista"):
-          entrada = input("Escribe un numero entero para la lista: ")
-       elif (tipo == "tamanio"):
-          entrada = input("Ingrese el tamaño de la lista: ")
-       else:
-          entrada = input("Ingrese el valor númerico a buscar: ")
-       try:
-           entrada = int(entrada)
-           return entrada
-       except ValueError:
-           print ("La entrada es incorrecta: escriba un numero entero.");
-
-lista = []
-
-tamanio = int(ValidarEntero("tamanio"))
-
-for i in range(0, tamanio):
-  elemento = int(ValidarEntero("lista"))
-  lista.append(elemento)
-
-ordenarLista(lista);
-
-from itertools import product
-
-def mochila(capacidad, pesos):
-    mejor_combinacion = []
-    mejor_aproximacion = 0
-
-    # Generar todas las combinaciones posibles de ítems con repetición
-    for combinacion in product(pesos, repeat=len(pesos)):
-        peso_total = sum(combinacion)
-
-        # Verificar si la combinación es válida y si se aproxima mejor a la capacidad máxima
-        if peso_total <= capacidad and peso_total > mejor_aproximacion:
-            mejor_aproximacion = peso_total
-            mejor_combinacion = list(combinacion)
-
-    return mejor_combinacion
-
-# Ejemplo de uso
-capacidad_maxima = 10  # Capacidad máxima de la bolsa en Kg
-pesos = [7, 3, 0.5]  # Lista de pesos de los ítems
-
-mejor_combinacion = mochila(capacidad_maxima, pesos)
-cantidad_items = len(mejor_combinacion)
-
-print("Mejor combinación de ítems para la bolsa:")
-print(mejor_combinacion)
-print(f"Cantidad de ítems en la mochila: {cantidad_items}")
-
