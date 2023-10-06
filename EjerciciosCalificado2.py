@@ -8,7 +8,7 @@ Original file is located at
 """
 
 
-#Ejercicio #2:
+#Ejercicio #2 - Encontrar número en lista de números:
 
 def BuscarLista(num, lista):
   valor = "No encontrado"
@@ -55,7 +55,7 @@ indice =  BuscarLista(num, lista)
 if(indice != -1):
   print (f"El número introducido: '{num}' se encuentra en la posición: '{indice+1}' de la lista.");
 
-#Ejercicio #3
+#Ejercicio #3 - Ordenar lista de valores númericos:
 
 def ordenarLista(lista):
   for i in range(0, len(lista)):
@@ -91,7 +91,7 @@ for i in range(0, tamanio):
 
 ordenarLista(lista);
 
-#Ejercicio #4
+#Ejercicio #4 - Algoritmo de la Mochila:
 
 def ValidarEntero():
    while True:
